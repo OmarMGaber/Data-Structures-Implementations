@@ -1,11 +1,11 @@
 package Stack;
 
-public class ArrayBasedStackImplementation implements Stack {
+public class ArrayBasedStack implements Stack {
     private int top;
     private int size;
     private int[] array;
 
-    public ArrayBasedStackImplementation(int size) {
+    public ArrayBasedStack(int size) {
         this.size = size;
         array = new int[size];
         top = -1;
@@ -53,7 +53,7 @@ public class ArrayBasedStackImplementation implements Stack {
 
     public void printStack() {
         if (!isEmpty()) {
-            ArrayBasedStackImplementation temp = new ArrayBasedStackImplementation(size);
+            ArrayBasedStack temp = new ArrayBasedStack(size);
 
             while (!isEmpty()) {
                 System.out.print(array[top] + " ");
@@ -120,7 +120,7 @@ public class ArrayBasedStackImplementation implements Stack {
     }
 
     public int avg() {
-        ArrayBasedStackImplementation temp = new ArrayBasedStackImplementation(size);
+        ArrayBasedStack temp = new ArrayBasedStack(size);
         int sum = 0;
         int counter = top + 1;
 
@@ -137,7 +137,7 @@ public class ArrayBasedStackImplementation implements Stack {
 
     public boolean contains(int value) {
         boolean conatins = false;
-        ArrayBasedStackImplementation temp = new ArrayBasedStackImplementation(size);
+        ArrayBasedStack temp = new ArrayBasedStack(size);
 
         while (!isEmpty()) {
             if (value == peek()) {
@@ -152,9 +152,9 @@ public class ArrayBasedStackImplementation implements Stack {
         return conatins;
     }
 
-    public boolean isEqual(ArrayBasedStackImplementation stack2) {
-        ArrayBasedStackImplementation temp = new ArrayBasedStackImplementation(size);
-        ArrayBasedStackImplementation tempStack2 = new ArrayBasedStackImplementation(stack2.size);
+    public boolean isEqual(ArrayBasedStack stack2) {
+        ArrayBasedStack temp = new ArrayBasedStack(size);
+        ArrayBasedStack tempStack2 = new ArrayBasedStack(stack2.size);
 
         if (isEmpty() && stack2.isEmpty()) {
             return true;
@@ -175,9 +175,9 @@ public class ArrayBasedStackImplementation implements Stack {
         return true;
     }
 
-    public boolean isReversee(ArrayBasedStackImplementation stack2) {
-        ArrayBasedStackImplementation temp = new ArrayBasedStackImplementation(size);
-        ArrayBasedStackImplementation tempStack2 = new ArrayBasedStackImplementation(stack2.size);
+    public boolean isReversee(ArrayBasedStack stack2) {
+        ArrayBasedStack temp = new ArrayBasedStack(size);
+        ArrayBasedStack tempStack2 = new ArrayBasedStack(stack2.size);
 
         if (isEmpty() && stack2.isEmpty()) {
             return true;
@@ -239,7 +239,7 @@ public class ArrayBasedStackImplementation implements Stack {
     }
 
     public void sortStackUsingIteration() {
-        ArrayBasedStackImplementation tempStack = new ArrayBasedStackImplementation(size);
+        ArrayBasedStack tempStack = new ArrayBasedStack(size);
         while (!isEmpty()) {
             int temp = pop();
             while (!tempStack.isEmpty() && tempStack.peek() > temp) {
