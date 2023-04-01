@@ -21,7 +21,7 @@ public class ArrayBasedQueue {
         return (rear + 1) % size == front;
     }
 
-    public boolean inQueue(int element) {
+    public boolean enQueue(int element) {
         if (!isFull()) {
             if (rear == -1) {
                 rear = front = 0;
@@ -54,12 +54,12 @@ public class ArrayBasedQueue {
         ArrayBasedQueue tempQueue = new ArrayBasedQueue(size);
 
         while (!isEmpty()) {
-            tempQueue.inQueue(deQueue());
+            tempQueue.enQueue(deQueue());
         }
         while(!tempQueue.isEmpty()){
             int element = tempQueue.deQueue();
             System.out.print(element + " ");
-            inQueue(element);
+            enQueue(element);
         }
     }
 }

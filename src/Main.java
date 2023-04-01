@@ -15,11 +15,11 @@ public class Main {
 */
         LinkedQueue queue = new LinkedQueue();
 
-        queue.inQueue(5);
-        queue.inQueue(3123123);
-        queue.inQueue(23);
-        queue.inQueue(532);
-        queue.inQueue(12);
+        queue.enQueue(5);
+        queue.enQueue(3123123);
+        queue.enQueue(23);
+        queue.enQueue(532);
+        queue.enQueue(12);
         queue.display();
         queue.reverse();
         queue.display();

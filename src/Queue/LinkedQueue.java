@@ -12,7 +12,7 @@ public class LinkedQueue implements Queue{
         return front == null;
     }
 
-    public void inQueue(int data) {
+    public void enQueue(int data) {
         Node newNode = new Node(data);
         if (newNode == null) {
             return;
@@ -54,10 +54,10 @@ public class LinkedQueue implements Queue{
             if (min.data > current.data) {
                 min = current;
             }
-            tempQueue.inQueue(current.data);
+            tempQueue.enQueue(current.data);
         }
         while (!tempQueue.isEmpty()) {
-            inQueue(tempQueue.deQueue().data);
+            enQueue(tempQueue.deQueue().data);
         }
         return min.data;
     }
@@ -70,10 +70,10 @@ public class LinkedQueue implements Queue{
             if (max.data < current.data) {
                 max = current;
             }
-            tempQueue.inQueue(current.data);
+            tempQueue.enQueue(current.data);
         }
         while (!tempQueue.isEmpty()) {
-            inQueue(tempQueue.deQueue().data);
+            enQueue(tempQueue.deQueue().data);
         }
         return max.data;
     }
@@ -115,7 +115,7 @@ public class LinkedQueue implements Queue{
             stack.push(deQueue().data);
         }
         while (!stack.isEmpty()){
-            inQueue(stack.pop());
+            enQueue(stack.pop());
         }
     }
 
@@ -123,7 +123,7 @@ public class LinkedQueue implements Queue{
         if (!isEmpty()){
             int element = deQueue().data;
             reverseRecursion();
-            inQueue(element);
+            enQueue(element);
         }
     }
 
