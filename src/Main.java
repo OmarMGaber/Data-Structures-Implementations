@@ -1,4 +1,5 @@
 import Queue.ArrayBasedQueue;
+import Queue.LinkedQueue;
 import Stack.ArrayBasedStack;
 import Stack.LinkedStack;
 
@@ -12,15 +13,22 @@ public class Main {
         stack.push(2);
         stack.push(13);
 */
-        ArrayBasedQueue queue = new ArrayBasedQueue(10);
+        LinkedQueue queue = new LinkedQueue();
 
         queue.inQueue(5);
-        queue.inQueue(3);
+        queue.inQueue(3123123);
         queue.inQueue(23);
         queue.inQueue(532);
         queue.inQueue(12);
+        queue.display();
+        queue.reverse();
+        queue.display();
+
+        System.out.println("  ");
 
         queue.display();
+        queue.reverseRecursion();
         queue.display();
+
     }
 }
