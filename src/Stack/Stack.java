@@ -10,7 +10,5 @@ public interface Stack {
 
     public boolean isEmpty();
 
-    public boolean isFull();
-
     public int size();
 }

@@ -41,7 +41,6 @@ public class ArrayBasedStack implements Stack {
         return top == -1;
     }
 
-    @Override
     public boolean isFull() {
         return top == size - 1;
     }

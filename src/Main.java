@@ -1,22 +1,26 @@
+import Queue.ArrayBasedQueue;
 import Stack.ArrayBasedStack;
+import Stack.LinkedStack;
 
 public class Main {
     public static void main(String[] args) {
-        ArrayBasedStack stack = new ArrayBasedStack(5);
+/*
+        LinkedStack stack = new LinkedStack();
 
         stack.push(100);
         stack.push(43);
         stack.push(2);
         stack.push(13);
-        ArrayBasedStack stack2 = new ArrayBasedStack(5);
+*/
+        ArrayBasedQueue queue = new ArrayBasedQueue(10);
 
-        stack2.push(12);
-        stack2.push(2);
-        stack2.push(43);
-        stack2.push(100);
+        queue.inQueue(5);
+        queue.inQueue(3);
+        queue.inQueue(23);
+        queue.inQueue(532);
+        queue.inQueue(12);
 
-        System.out.println(stack2.isReversee(stack));
-
-        stack.printStack();
+        queue.display();
+        queue.display();
     }
 }
