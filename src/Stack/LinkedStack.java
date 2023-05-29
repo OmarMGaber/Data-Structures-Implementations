@@ -1,41 +1,40 @@
-
 package Stack;
 
 import Nodes.Node;
 
-public class LinkedStack implements Stack {
-    Node top = null;
-    int size = 0;
+public class LinkedStack<T> implements Stack {
+    private Node top;
+    private int size;
+
+    public LinkedStack() {
+        this.top = null;
+        this.size = 0;
+    }
 
     @Override
-    public int pop() {
-        if (top != null) {
-            size--;
-            int value = top.data;
+    public T pop() {
+        T data = null;
+        if (!isEmpty()) {
+            data = (T) top.data;
             top = top.next;
-            return value;
         }
-        return 0;
+        return data;
     }
 
     @Override
-    public int peek() {
-        if (top != null) {
-            return top.data;
-        }
-        return 0;
+    public T peek() {
+        return (T) top.data;
     }
 
     @Override
-    public boolean push(int element) {
-        Node newNode = new Node(element);
-        if (newNode == null) {
-            return false;
+    public void push(Object element) {
+        Node<T> newNode = new Node<T>((T) element);
+        if (element == null) {
+            return;
         }
-        size++;
         newNode.next = top;
         top = newNode;
-        return true;
+        size++;
     }
 
     @Override
@@ -45,19 +44,22 @@ public class LinkedStack implements Stack {
 
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
-    public void display(){
-        LinkedStack temp = new LinkedStack();
-        while(!isEmpty()){
-            int tempValue = pop();
-            System.out.print(tempValue);
-            temp.push(tempValue);
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        Node temp = top;
+        sb.append("[");
+        while (temp != null) {
+            sb.append(temp.data);
+            if (temp.next != null) {
+                sb.append(",");
+            }
+            temp = temp.next;
         }
-        while (!temp.isEmpty()){
-            push(temp.pop());
-        }
+        sb.append("]");
+        return sb.toString();
     }
-
 }

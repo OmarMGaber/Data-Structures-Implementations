@@ -1,10 +1,10 @@
 package Nodes;
 
-public class Node {
-    public int data;
-    public Node next;
+public class Node<T> {
+    public T data;
+    public Node<T> next;
 
-    public Node(int newData){
+    public Node(T newData){
         data = newData;
         next = null;
     }

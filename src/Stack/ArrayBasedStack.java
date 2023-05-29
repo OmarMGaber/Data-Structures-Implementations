@@ -1,39 +1,42 @@
 package Stack;
 
-public class ArrayBasedStack implements Stack {
-    private int top;
-    private int size;
-    private int[] array;
+public class ArrayBasedStack<T> implements Stack<T> {
 
-    public ArrayBasedStack(int size) {
-        this.size = size;
-        array = new int[size];
-        top = -1;
+    private int top;
+    private T[] array;
+    private int size;
+    private int capacity;
+
+    public ArrayBasedStack(int capacity) {
+        this.capacity = capacity;
+        this.array = (T[]) new Object[capacity];
+        this.size = 0;
+        this.top = -1;
     }
 
     @Override
-    public int pop() {
+    public T pop() {
         if (!isEmpty()) {
+            size--;
             return array[top--];
         }
-        return -1;
+        return null;
     }
 
     @Override
-    public int peek() {
+    public T peek() {
         if (!isEmpty()) {
             return array[top];
         }
-        return -1;
+        return null;
     }
 
     @Override
-    public boolean push(int element) {
+    public void push(T element) {
         if (!isFull()) {
+            size++;
             array[++top] = element;
-            return true;
         }
-        return false;
     }
 
     @Override
@@ -42,7 +45,7 @@ public class ArrayBasedStack implements Stack {
     }
 
     public boolean isFull() {
-        return top == size - 1;
+        return top == capacity - 1;
     }
 
     @Override
@@ -50,205 +53,21 @@ public class ArrayBasedStack implements Stack {
         return size;
     }
 
-    public void printStack() {
-        if (!isEmpty()) {
-            ArrayBasedStack temp = new ArrayBasedStack(size);
-
-            while (!isEmpty()) {
-                System.out.print(array[top] + " ");
-                temp.push(pop());
-            }
-
-            System.out.println();
-            while (!temp.isEmpty()) {
-                push(temp.pop());
-            }
-        }
+    public int capacity() {
+        return capacity;
     }
 
-    // recursively
-    public void printReversed() {
-        if (isEmpty()) {
-            System.out.println();
-            return;
-        }
-        int temp = pop();
-        printReversed();
-        System.out.print(temp + " ");
-        push(temp);
-    }
-
-//    public int max() {
-//        int max;
-//        while (!isEmpty()) {
-//            max = pop();
-//            if (max < peek()) {
-//                max = pop();
-//            }
-//            if (isEmpty()){
-//                return max;
-//            }
-//        }
-//        return 0;
-//    }
-
-    public int max() {
-        if (!isEmpty()) {
-            int max = 0;
-            for (int i = 0; i <= top; i++) {
-                if (max < array[i]) {
-                    max = array[i];
-                }
-            }
-            return max;
-        }
-        return 0;
-    }
-
-    public int min() {
-        if (!isEmpty()) {
-            int min = array[0];
-            for (int i = 0; i <= top; i++) {
-                if (min > array[i]) {
-                    min = array[i];
-                }
-            }
-            return min;
-        }
-        return 0;
-    }
-
-    public int avg() {
-        ArrayBasedStack temp = new ArrayBasedStack(size);
-        int sum = 0;
-        int counter = top + 1;
-
-        while (!isEmpty()) {
-            sum += peek();
-            temp.push(pop());
-        }
-
-        while (!temp.isEmpty()) {
-            push(temp.pop());
-        }
-        return sum / counter;
-    }
-
-    public boolean contains(int value) {
-        boolean conatins = false;
-        ArrayBasedStack temp = new ArrayBasedStack(size);
-
-        while (!isEmpty()) {
-            if (value == peek()) {
-                conatins = true;
-            }
-            temp.push(pop());
-        }
-
-        while (!temp.isEmpty()) {
-            push(temp.pop());
-        }
-        return conatins;
-    }
-
-    public boolean isEqual(ArrayBasedStack stack2) {
-        ArrayBasedStack temp = new ArrayBasedStack(size);
-        ArrayBasedStack tempStack2 = new ArrayBasedStack(stack2.size);
-
-        if (isEmpty() && stack2.isEmpty()) {
-            return true;
-        }
-        if (top == stack2.top) {
-            while (!isEmpty()) {
-                if (peek() != stack2.peek()) {
-                    return false;
-                }
-                temp.push(pop());
-                tempStack2.push(stack2.pop());
-            }
-            while (!temp.isEmpty()) {
-                push(temp.pop());
-                stack2.push(tempStack2.pop());
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");
+        for (int i = 0; i < top + 1; i++) {
+            sb.append(array[i]);
+            if (i != top) {
+                sb.append(",");
             }
         }
-        return true;
+        sb.append("]");
+        return sb.toString();
     }
-
-    public boolean isReversee(ArrayBasedStack stack2) {
-        ArrayBasedStack temp = new ArrayBasedStack(size);
-        ArrayBasedStack tempStack2 = new ArrayBasedStack(stack2.size);
-
-        if (isEmpty() && stack2.isEmpty()) {
-            return true;
-        }
-        if (top == stack2.top) {
-            while (!stack2.isEmpty()) {
-                tempStack2.push(stack2.pop());
-            }
-            while (!isEmpty()) {
-                if (peek() != tempStack2.peek()) {
-                    return false;
-                }
-                temp.push(pop());
-                stack2.push(tempStack2.pop());
-            }
-            while (!temp.isEmpty()) {
-                push(temp.pop());
-            }
-        }
-        return true;
-    }
-
-    private void pushReversed(int temp) {
-        if (isEmpty()) {
-            push(temp);
-        } else {
-            int temp2 = pop();
-            pushReversed(temp);
-            push(temp2);
-        }
-    }
-
-    public void reverseStackRecursively() {
-        if (!isEmpty()) {
-            int temp = pop();
-            reverseStackRecursively();
-            pushReversed(temp);
-        }
-    }
-
-    public void sortStack() {
-        if (isEmpty()) {
-            return;
-        }
-
-        int temp = pop();
-        sortStack();
-        insertInSortedOrder(temp);
-    }
-
-    private void insertInSortedOrder(int temp) {
-        if (isEmpty() || peek() < temp) {
-            push(temp);
-        } else {
-            int temp2 = pop();
-            insertInSortedOrder(temp);
-            push(temp2);
-        }
-    }
-
-    public void sortStackUsingIteration() {
-        ArrayBasedStack tempStack = new ArrayBasedStack(size);
-        while (!isEmpty()) {
-            int temp = pop();
-            while (!tempStack.isEmpty() && tempStack.peek() > temp) {
-                push(tempStack.pop());
-            }
-            tempStack.push(temp);
-        }
-        while (!tempStack.isEmpty()) {
-            push(tempStack.pop());
-        }
-    }
-
 }

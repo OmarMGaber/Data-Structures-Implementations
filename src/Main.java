@@ -1,34 +1,33 @@
-import Queue.ArrayBasedQueue;
-import Queue.LinkedQueue;
+import Collections.StackCollections;
+
 import Stack.ArrayBasedStack;
 import Stack.LinkedStack;
 
 public class Main {
     public static void main(String[] args) {
-/*
-        LinkedStack stack = new LinkedStack();
+        Collections.StackCollections stackCollections = new StackCollections();
 
-        stack.push(100);
-        stack.push(43);
+        LinkedStack<Integer> linkedStack = new LinkedStack<Integer>();
+        linkedStack.push(1);
+        linkedStack.push(2);
+        linkedStack.push(3);
+        linkedStack.push(4);
+        linkedStack.push(5);
+        linkedStack.push(6);
+
+        System.out.println("LinkedStack: " + linkedStack);
+
+
+        ArrayBasedStack<Integer> stack = new ArrayBasedStack<Integer>(6);
+        stack.push(1);
         stack.push(2);
-        stack.push(13);
-*/
-        LinkedQueue queue = new LinkedQueue();
+        stack.push(3);
+        stack.push(4);
+        stack.push(5);
+        stack.push(6);
 
-        queue.enQueue(5);
-        queue.enQueue(3123123);
-        queue.enQueue(23);
-        queue.enQueue(532);
-        queue.enQueue(12);
-        queue.display();
-        queue.reverse();
-        queue.display();
+        System.out.println("Stack: " + stack);
 
-        System.out.println("  ");
-
-        queue.display();
-        queue.reverseRecursion();
-        queue.display();
-
+        System.out.println(stackCollections.isEqual(stack, linkedStack));
     }
 }

@@ -1,14 +1,16 @@
 package Stack;
 
-public interface Stack {
+public interface Stack<T> {
 
-    public int pop();
+    public T pop();
 
-    public int peek();
+    public T peek();
 
-    public boolean push(int element);
+    public void push(T element);
 
     public boolean isEmpty();
 
     public int size();
+
+    public String toString();
 }
